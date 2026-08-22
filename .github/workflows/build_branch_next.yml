@@ -1,13 +1,13 @@
-name: Build version tags
+name: Build branch next
 
 on:
   workflow_dispatch:
   push:
-    tags:
-      - "v*"
+    branches:
+      - next
 
 jobs:
-  bake-latest:
+  bake-next:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -39,11 +39,14 @@ jobs:
           file: ./docker/docker-py3-kms/Dockerfile
           platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
           push: true
+          # the tag "python3-next" is for backward compatibility only
           tags: |
-            pykmsorg/py-kms:${{ github.ref_name }}
-            ghcr.io/py-kms-organization/py-kms:${{ github.ref_name }}
-            pykmsorg/py-kms:${{ github.ref_name }}-full
-            ghcr.io/py-kms-organization/py-kms:${{ github.ref_name }}-full
+            pykmsorg/py-kms:next
+            ghcr.io/py-kms-organization/py-kms:next
+            pykmsorg/py-kms:next-full
+            ghcr.io/py-kms-organization/py-kms:next-full
+            pykmsorg/py-kms:python3-next
+            ghcr.io/py-kms-organization/py-kms:python3-next
           build-args: |
             BUILD_COMMIT=${{ github.sha }}
             BUILD_REFERENCE=${{ github.ref_name }}
@@ -54,9 +57,14 @@ jobs:
           file: ./docker/docker-py3-kms-minimal/Dockerfile
           platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
           push: true
+          # the tag "latest-next" and "minimal-next" are for backward compatibility only
           tags: |
-            pykmsorg/py-kms:${{ github.ref_name }}-minimal
-            ghcr.io/py-kms-organization/py-kms:${{ github.ref_name }}-minimal
+            pykmsorg/py-kms:next-minimal
+            ghcr.io/py-kms-organization/py-kms:next-minimal
+            pykmsorg/py-kms:latest-next
+            ghcr.io/py-kms-organization/py-kms:latest-next
+            pykmsorg/py-kms:minimal-next
+            ghcr.io/py-kms-organization/py-kms:minimal-next
           build-args: |
             BUILD_COMMIT=${{ github.sha }}
             BUILD_REFERENCE=${{ github.ref_name }}

@@ -1,4 +1,4 @@
-name: Build latest/main tags
+name: Build branch main
 
 on:
   workflow_dispatch:
