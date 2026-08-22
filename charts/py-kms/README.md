@@ -29,7 +29,7 @@ For more information please refer to the Helm Install command documentation loca
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/py-kms-organization/py-kms"` |  |
+| image.repository | string | `"ghcr.io/openwrtbuild/py-kms"` |  |
 | image.tag | string | `"python3"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |

@@ -41,12 +41,12 @@ jobs:
           push: true
           # the tag "python3-next" is for backward compatibility only
           tags: |
-            pykmsorg/py-kms:next
-            ghcr.io/py-kms-organization/py-kms:next
-            pykmsorg/py-kms:next-full
-            ghcr.io/py-kms-organization/py-kms:next-full
-            pykmsorg/py-kms:python3-next
-            ghcr.io/py-kms-organization/py-kms:python3-next
+            dockerbuild01/py-kms:next
+            ghcr.io/openwrtbuild/py-kms:next
+            dockerbuild01/py-kms:next-full
+            ghcr.io/openwrtbuild/py-kms:next-full
+            dockerbuild01/py-kms:python3-next
+            ghcr.io/openwrtbuild/py-kms:python3-next
           build-args: |
             BUILD_COMMIT=${{ github.sha }}
             BUILD_REFERENCE=${{ github.ref_name }}
@@ -59,12 +59,12 @@ jobs:
           push: true
           # the tag "latest-next" and "minimal-next" are for backward compatibility only
           tags: |
-            pykmsorg/py-kms:next-minimal
-            ghcr.io/py-kms-organization/py-kms:next-minimal
-            pykmsorg/py-kms:latest-next
-            ghcr.io/py-kms-organization/py-kms:latest-next
-            pykmsorg/py-kms:minimal-next
-            ghcr.io/py-kms-organization/py-kms:minimal-next
+            dockerbuild01/py-kms:next-minimal
+            ghcr.io/openwrtbuild/py-kms:next-minimal
+            dockerbuild01/py-kms:latest-next
+            ghcr.io/openwrtbuild/py-kms:latest-next
+            dockerbuild01/py-kms:minimal-next
+            ghcr.io/openwrtbuild/py-kms:minimal-next
           build-args: |
             BUILD_COMMIT=${{ github.sha }}
             BUILD_REFERENCE=${{ github.ref_name }}
