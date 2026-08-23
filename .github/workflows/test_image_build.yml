@@ -3,18 +3,19 @@ name: "Test: Build Docker Image"
 on:
   workflow_dispatch:
   push:
-    paths-ignore:
-      - '**.md'
-      - 'docs/**'
-      - '.github/**'
-      - '.gitignore'
+    branches:
+      - test
+    paths:
+      - '!**.md'
+      - '!docs/**'
+      - '!.github/**'
+      - '!.gitignore'
+      - '.github/workflows/test_image_build.yml'
 
 jobs:
   build-test:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: write
+    permissions: write-all
     steps:
       - name: Checkout
         uses: actions/checkout@v6
