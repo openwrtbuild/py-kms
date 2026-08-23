@@ -13,6 +13,7 @@ ENV HWID=RANDOM
 ENV LOGLEVEL=INFO
 ENV LOGFILE=STDOUT
 ENV LOGSIZE=""
+ENV TZ=Asia/Singapore
 ENV WEBUI=0
 
 COPY docker/docker-py3-kms-minimal/requirements.txt /home/py-kms/requirements.txt
