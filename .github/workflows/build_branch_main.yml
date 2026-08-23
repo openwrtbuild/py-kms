@@ -5,9 +5,14 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'
 
 jobs:
-  bake-latest:
+  build-selected:
     runs-on: ubuntu-latest
     permissions:
       packages: write

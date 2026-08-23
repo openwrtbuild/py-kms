@@ -3,6 +3,11 @@ name: "Test: Basic Client"
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'
 
 jobs:
   run-test:

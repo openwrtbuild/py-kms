@@ -3,9 +3,14 @@ name: "Test: Build Docker Image"
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'
 
 jobs:
-  bake-test:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,23 +21,30 @@ jobs:
           platforms: all
       - name: Docker Setup Buildx
         uses: docker/setup-buildx-action@v3
-      - name: Build (full)
+      - name: Build (full) and Export
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ./docker/docker-py3-kms/Dockerfile
           platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
+          outputs: type=local,platform-split=false,dest=${{ runner.temp }}/buildresult
           push: false
           build-args: |
             BUILD_COMMIT=${{ github.sha }}
             BUILD_REFERENCE=${{ github.ref_name }}
-      - name: Build (minimal)
+      - name: Build (minimal) and Export
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ./docker/docker-py3-kms-minimal/Dockerfile
           platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
+          outputs: type=local,platform-split=false,dest=${{ runner.temp }}/buildresult
           push: false
           build-args: |
             BUILD_COMMIT=${{ github.sha }}
             BUILD_REFERENCE=${{ github.ref_name }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: myimages
+          path: ${{ runner.temp }}/buildresult

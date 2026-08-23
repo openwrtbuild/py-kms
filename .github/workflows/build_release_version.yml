@@ -7,7 +7,7 @@ on:
       - "v*"
 
 jobs:
-  bake-latest:
+  build-new-version:
     runs-on: ubuntu-latest
     permissions:
       packages: write
